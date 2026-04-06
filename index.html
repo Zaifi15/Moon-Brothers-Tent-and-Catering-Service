@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Moon Brothers | Premium Tent & Catering Services</title>
+    <!-- Google Fonts: modern, unique, attractive -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- AOS Library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0a0f2c;  /* deep navy core background */
+            color: #f0f2fa;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #141b3b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f5b042;
+            border-radius: 10px;
+        }
+
+        /* glassmorphism & gradients */
+        .glass-card {
+            background: rgba(15, 25, 55, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(245, 176, 66, 0.25);
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .glass-card:hover {
+            border-color: #f5b042;
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* NAVBAR (advanced) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 99;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .moon-icon {
+            font-size: 2.8rem;
+            color: #f5b042;
+            filter: drop-shadow(0 0 6px #ffcd7e);
+            transition: transform 0.3s ease;
+        }
+
+        .brand-text h1 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #f5b042);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .brand-text p {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            color: #f5b042b3;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #eef2ff;
+            transition: 0.2s;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #f5b042;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #f5b042;
+        }
+
+        .menu-icon {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #f5b042;
+        }
+
+        /* hero section */
+        .hero {
+            padding: 4rem 0 5rem;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .hero-content {
+            flex: 1.2;
+        }
+
+        .hero-badge {
+            background: rgba(245,176,66,0.2);
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #f5b042;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-content h2 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-content h2 span {
+            color: #f5b042;
+            border-bottom: 3px solid #f5b042;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 2rem;
+            max-width: 550px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item h3 {
+            font-size: 1.8rem;
+            color: #f5b042;
+        }
+
+        .hero-image {
+            flex: 0.9;
+            text-align: center;
+        }
+
+        .hero-image i {
+            font-size: 12rem;
+            color: #f5b042;
+            filter: drop-shadow(0 0 15px #f5b04270);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Section titles */
+        .section-title {
+            text-align: center;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .section-title span {
+            color: #f5b042;
+        }
+        .section-sub {
+            text-align: center;
+            color: #b9c3e6;
+            margin-bottom: 3rem;
+        }
+
+        /* services grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: #0f1739;
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid #232b55;
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: #f5b042;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .service-card p {
+            color: #cbd5ff;
+            font-size: 0.9rem;
+        }
+
+        /* Owner & contact special */
+        .owner-card {
+            background: linear-gradient(145deg, #0c1233, #070c24);
+            border-radius: 2rem;
+            padding: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            border-left: 5px solid #f5b042;
+        }
+
+        .owner-info h3 {
+            font-size: 1.7rem;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            background: #f5b042;
+            color: #0a0f2c;
+            padding: 10px 22px;
+            border-radius: 60px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+
+        .contact-btn i {
+            font-size: 1.2rem;
+        }
+
+        .contact-btn:hover {
+            background: #ffce7c;
+            transform: scale(1.03);
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        /* map / address section */
+        .info-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+            margin: 4rem 0;
+        }
+
+        .address-card {
+            flex: 1;
+            background: #0f1739;
+            padding: 2rem;
+            border-radius: 1.8rem;
+            text-align: center;
+        }
+
+        /* footer */
+        footer {
+            background: #050a1f;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid #f5b04230;
+        }
+
+        .social-icons a {
+            color: #f5b042;
+            font-size: 1.5rem;
+            margin: 0 0.7rem;
+            transition: 0.2s;
+            display: inline-block;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-4px);
+            color: white;
+        }
+
+        /* responsive */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                background: #0c1235cc;
+                backdrop-filter: blur(18px);
+                padding: 1.5rem;
+                border-radius: 2rem;
+                margin-top: 1rem;
+                text-align: center;
+                gap: 1rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-icon {
+                display: block;
+            }
+            .hero-content h2 {
+                font-size: 2.3rem;
+            }
+            .hero-image i {
+                font-size: 8rem;
+            }
+            .owner-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .container {
+                padding: 0 1.2rem;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .brand-text h1 {
+                font-size: 1.2rem;
+            }
+            .moon-icon {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.9rem;
+            }
+        }
+
+        button, .btn-glow {
+            cursor: pointer;
+        }
+
+        /* floating cta */
+        .floating-wa {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25D366;
+            border-radius: 50px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            z-index: 999;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .floating-wa i {
+            font-size: 1.6rem;
+        }
+        .floating-wa:hover {
+            transform: scale(1.05);
+            background: #128C7E;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Floating WhatsApp direct -->
+<a href="https://wa.me/923156668855?text=Assalamualikum%20Moon%20Brothers!%20I%20need%20your%20premium%20event%20services" class="floating-wa" target="_blank">
+    <i class="fab fa-whatsapp"></i> <span>Chat on WhatsApp</span>
+</a>
+
+<div class="container">
+    <!-- NAVBAR with moon logo & business title -->
+    <nav class="navbar">
+        <div class="logo-area">
+            <i class="fas fa-moon moon-icon"></i>
+            <div class="brand-text">
+                <h1>MOON BROTHERS</h1>
+                <p>Tent & Catering Service | Event Masters</p>
+            </div>
+        </div>
+        <div class="menu-icon" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#owner">Owner</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#location">Location</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container hero-grid">
+        <div class="hero-content" data-aos="fade-right">
+            <div class="hero-badge"><i class="fas fa-star-of-life"></i> Since 2012 • Premium Event Solutions</div>
+            <h2>Turning Moments into <span>Royal Memories</span> <br> with Excellence</h2>
+            <p class="hero-desc">Complete event management — from majestic tent setups, world-class catering, to cinematic photo & videography. We craft celebrations that shine like moonlight.</p>
+            <a href="#services" class="btn" style="background:#f5b042; color:#0a0f2c;">Explore Services <i class="fas fa-arrow-right"></i></a>
+            <div class="hero-stats">
+                <div class="stat-item"><h3>850+</h3><p>Happy Events</p></div>
+                <div class="stat-item"><h3>15+</h3><p>Expert Team</p></div>
+                <div class="stat-item"><h3>100%</h3><p>Client Delight</p></div>
+            </div>
+        </div>
+        <div class="hero-image" data-aos="fade-left">
+            <i class="fas fa-calendar-alt"></i>
+            <div style="margin-top: 1rem; font-weight:500;">Luxury • Tradition • Innovation</div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<div class="container" id="services">
+    <h2 class="section-title" data-aos="fade-up">Our <span>Premium Services</span></h2>
+    <p class="section-sub" data-aos="fade-up">Complete 360° event solutions under one roof</p>
+    <div class="services-grid">
+        <div class="service-card" data-aos="zoom-in"><i class="fas fa-camera"></i><h3>Photo & Videography</h3><p>Cinematic storytelling, candid moments, and professional editing.</p></div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="50"><i class="fas fa-crown"></i><h3>VIP Stage Decorations</h3><p>Royal backdrops, floral arches, and luxury stage setups.</p></div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-lightbulb"></i><h3>Lighting Systems</h3><p>Fairy lights, moving heads, wash effects — magical ambiance.</p></div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="150"><i class="fas fa-music"></i><h3>Sound System</h3><p>High-end JBL & line array for crystal clear audio.</p></div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-car"></i><h3>Wedding Car & Bed Decoration</h3><p>Floral, LED, and designer themes for weddings.</p></div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="250"><i class="fas fa-umbrella"></i><h3>Tent & Catering</h3><p>Spacious tents, royal carpets, and exquisite buffet menus.</p></div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-chalkboard-user"></i><h3>Event Management System</h3><p>Full coordination, planning, and execution for all events.</p></div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="350"><i class="fas fa-ring"></i><h3>Wedding Planning</h3><p>End-to-end wedding coordination & logistics.</p></div>
+    </div>
+</div>
+
+<!-- OWNER & DIRECT CONTACT SECTION -->
+<div class="container" id="owner">
+    <div class="owner-card" data-aos="flip-up">
+        <div class="owner-info">
+            <h3><i class="fas fa-user-astronaut"></i> Owner & Director</h3>
+            <h2 style="font-size:2rem; margin:0.5rem 0;">Qaiser Muhammad</h2>
+            <p style="margin-bottom:0.5rem;"><i class="fas fa-phone-alt"></i> +92 315 6668855 (WhatsApp)</p>
+            <p><i class="fas fa-map-marker-alt"></i> Hikmat Khan Market, Maini Swabi</p>
+        </div>
+        <div class="contact-links">
+            <a href="https://wa.me/923156668855?text=Assalamualikum%20Moon%20Brothers%20I%20need%20booking%20details" class="contact-btn whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Now</a>
+            <a href="https://www.tiktok.com/@moonbrother442" class="contact-btn" style="background:#000000dd; color:white;" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a href="tel:+923156668855" class="contact-btn" style="background:#1e2a5e;"><i class="fas fa-phone"></i> Call Us</a>
+        </div>
+    </div>
+</div>
+
+<!-- ADDRESS & MAP / LOCATION AREA -->
+<div class="container" id="location">
+    <div class="info-row">
+        <div class="address-card" data-aos="fade-right">
+            <i class="fas fa-location-dot" style="font-size: 2.5rem; color:#f5b042;"></i>
+            <h3 style="margin: 1rem 0;">Visit Our Office</h3>
+            <p>Hikmat Khan Market, Maini Swabi, KPK, Pakistan</p>
+            <p style="margin-top: 10px;"><strong>Moon Brothers Tent & Catering Service</strong></p>
+            <div style="margin-top: 20px;">
+                <i class="fas fa-clock"></i> Mon - Sun: 9:00 AM – 10:00 PM
+            </div>
+        </div>
+        <div class="address-card" data-aos="fade-left">
+            <i class="fas fa-globe" style="font-size: 2.5rem; color:#f5b042;"></i>
+            <h3 style="margin: 1rem 0;">Social Media</h3>
+            <div class="social-icons" style="margin-top: 10px;">
+                <a href="https://www.tiktok.com/@moonbrother442" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/923156668855" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p style="margin-top: 1rem;">Follow for event highlights & offers</p>
+            <a href="https://www.tiktok.com/@moonbrother442" target="_blank" class="btn-outline btn" style="margin-top: 15px; background:transparent; border-color:#f5b042;">Watch on TikTok →</a>
+        </div>
+    </div>
+</div>
+
+<!-- CTA for event management system (custom) -->
+<div class="container" data-aos="zoom-in-up">
+    <div style="background: linear-gradient(125deg, #0f1840, #050a1f); border-radius: 2rem; padding: 2rem; text-align: center; margin: 2rem 0;">
+        <h2 style="font-size: 1.8rem;">Need a Complete Event Management System?</h2>
+        <p style="margin: 0.8rem 0;">From guest list coordination to real-time updates, we provide advanced digital management for weddings, corporate meets, and grand celebrations.</p>
+        <a href="https://wa.me/923156668855?text=I%20want%20the%20advanced%20event%20management%20system%20details" class="btn" style="background:#f5b042; color:#0a0f2c; margin-top: 1rem;">Request Event System <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="logo-area" style="justify-content: center; margin-bottom: 1rem;">
+            <i class="fas fa-moon moon-icon"></i>
+            <div class="brand-text"><h1 style="font-size:1.4rem;">MOON BROTHERS</h1><p>Tent & Catering | Since 2012</p></div>
+        </div>
+        <p style="opacity: 0.7;">&copy; 2025 Moon Brothers — Premium Event Management. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Owner: Qaiser Muhammad | Hikmat Khan Market Maini Swabi | +92 315 6668855</p>
+    </div>
+</footer>
+
+<!-- Scripts: AOS + Mobile menu -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialize AOS animations
+    AOS.init({
+        duration: 800,
+        once: true,
+        mirror: false,
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    if(menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    // close navbar when clicking a link (mobile friendly)
+    const allLinks = document.querySelectorAll('.nav-links a');
+    allLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if(window.innerWidth <= 900) {
+                navLinks.classList.remove('active');
+            }
+        });
+    });
+
+    // smooth scroll for anchor links (extra)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if(targetId === "#" || targetId === "") return;
+            const targetElem = document.querySelector(targetId);
+            if(targetElem) {
+                e.preventDefault();
+                targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
